@@ -47,7 +47,7 @@
                 <div class="invalid-feedback">Ingresa un rango de horas válido (0.5 a 24).</div>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100 id="submitBtn"">Registrar Jornada</button>
+            <button type="submit" class="btn btn-primary w-100" id="submitBtn">Registrar Jornada</button>
         </form>
 
         <div id="responseMessage" class="mt-3 alert d-none" role="alert"></div>
@@ -55,7 +55,6 @@
 </div>
 
 <script>
-    // REEMPLAZA ESTA URL con la que te dio Google Apps Script al implementar
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxoVGEoTagvtnLporSKdnacrTA-qrDkMJ-RXV4sfGM9lRUQn3llqZLcN_XcHWCidrcV6w/exec";
 
     document.getElementById('attendanceForm').addEventListener('submit', function (event) {
@@ -66,13 +65,11 @@
         const msgDiv = document.getElementById('responseMessage');
         const btn = document.getElementById('submitBtn');
 
-        // Validar si el formulario cumple los requisitos de HTML5
         if (!form.checkValidity()) {
             form.classList.add('was-validated');
             return;
         }
 
-        // Si es válido, preparar datos y deshabilitar botón temporalmente
         form.classList.add('was-validated');
         btn.disabled = true;
         btn.innerText = "Enviando datos...";
@@ -85,25 +82,21 @@
             horas: document.getElementById('horas').value
         };
 
-        // Enviar datos a Google Sheets usando fetch
         fetch(WEB_APP_URL, {
             method: 'POST',
-            mode: 'no-cors', // Evita problemas de CORS comunes con Apps Script
+            mode: 'no-cors', 
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
         })
         .then(() => {
-            // Manejo del éxito
             msgDiv.className = "mt-3 alert alert-success";
             msgDiv.innerText = "¡Registro guardado con éxito en Google Sheets!";
             msgDiv.classList.remove('d-none');
             
-            // Limpiar formulario y restablecer validación
             form.reset();
             form.classList.remove('was-validated');
         })
         .catch(error => {
-            // Manejo de errores de red
             msgDiv.className = "mt-3 alert alert-danger";
             msgDiv.innerText = "Hubo un error al enviar el registro. Inténtalo de nuevo.";
             msgDiv.classList.remove('d-none');
