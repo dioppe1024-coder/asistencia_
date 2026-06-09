@@ -1,40 +1,25 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Asistencia Logística</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <script>
-        tailwind.config = { darkMode: 'class' }
-    </script>
-    <style>
-        body { transition: background-color 0.3s ease, color 0.3s ease; }
-    </style>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-vh-100 flex items-center justify-center p-4 relative min-h-screen">
+<body class="bg-slate-50 text-slate-800 min-vh-100 flex items-center justify-center p-4 relative min-h-screen">
 
-    <!-- Conmutador de Modo Oscuro / Claro -->
-    <div class="absolute top-0 end-0 p-4">
-        <button id="themeToggler" type="button" class="px-3 py-2 border border-slate-300 dark:border-slate-700 rounded-lg text-sm bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
-            <i id="themeIcon" class="bi bi-sun-fill text-yellow-500"></i>
-        </button>
-    </div>
-
-    <!-- Contenedor del Formulario -->
-    <div class="w-full max-w-md bg-white dark:bg-slate-800 p-8 rounded-2xl border-[1px] border-slate-200/60 dark:border-slate-700/50 shadow-md shadow-slate-200/50 dark:shadow-black/20">
+    <div class="w-full max-w-md bg-white p-8 rounded-2xl border-[1px] border-slate-200/80 shadow-md shadow-slate-200/50">
         
-        <div id="appLogo" class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-5 border-[1px] border-white/10 shadow-sm shadow-blue-500/20 overflow-hidden">
-            <img src="URL_DE_TU_LOGO.png" alt="Logo" width="40" height="40" class="rounded-full object-cover"> 
+        <div id="appLogo" class="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-5 border border-slate-200 shadow-sm shadow-slate-200/80 overflow-hidden">
+            <img src="./magsatransparente--.jpg" alt="Logo" width="40" height="40" class="rounded-xl object-cover"> 
         </div>
 
         <h3 class="text-center text-2xl font-bold tracking-tight mb-1">Registro de Jornada</h3>
-        <p class="text-slate-400 dark:text-slate-400 text-center text-sm mb-6">Control de Asistencia Automático</p>
+        <p class="text-slate-400 text-center text-sm mb-6">Control de Asistencia Automático</p>
         
         <form id="attendanceForm" class="space-y-4" novalidate>
             
-            <!-- Campo DNI -->
             <div>
                 <label for="dni" class="block text-sm font-medium mb-1.5">Número de DNI:</label>
                 <div class="relative rounded-lg shadow-sm">
@@ -43,13 +28,12 @@
                     </div>
                     <input type="text" id="dni" pattern="\d{8}" inputmode="numeric" maxlength="8" required 
                         placeholder="Ingresa tus 8 dígitos" 
-                        class="block w-full ps-10 pe-3 py-2.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm">
+                        class="block w-full ps-10 pe-3 py-2.5 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm">
                 </div>
                 <div id="dniLoading" class="text-xs text-blue-500 mt-1 hidden"><i class="bi bi-hourglass-split animate-spin"></i> Buscando colaborador...</div>
                 <div id="dniError" class="text-xs text-red-500 mt-1 hidden">El DNI debe tener exactamente 8 números.</div>
             </div>
 
-            <!-- Campo Colaborador -->
             <div>
                 <label for="colaborador" class="block text-sm font-medium mb-1.5">Nombre del Colaborador:</label>
                 <div class="relative rounded-lg shadow-sm">
@@ -58,11 +42,10 @@
                     </div>
                     <input type="text" id="colaborador" readonly required 
                         placeholder="Se autocompletará con el DNI" 
-                        class="block w-full ps-10 pe-3 py-2.5 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-600 rounded-lg text-sm cursor-not-allowed outline-none">
+                        class="block w-full ps-10 pe-3 py-2.5 bg-slate-100 text-slate-500 border border-slate-300 rounded-lg text-sm cursor-not-allowed outline-none">
                 </div>
             </div>
 
-            <!-- Campo Sucursal -->
             <div>
                 <label for="sucursal" class="block text-sm font-medium mb-1.5">Sucursal asignada:</label>
                 <div class="relative rounded-lg shadow-sm">
@@ -71,11 +54,10 @@
                     </div>
                     <input type="text" id="sucursal" readonly required 
                         placeholder="Se autocompletará con el DNI" 
-                        class="block w-full ps-10 pe-3 py-2.5 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-600 rounded-lg text-sm cursor-not-allowed outline-none">
+                        class="block w-full ps-10 pe-3 py-2.5 bg-slate-100 text-slate-500 border border-slate-300 rounded-lg text-sm cursor-not-allowed outline-none">
                 </div>
             </div>
 
-            <!-- Selector de Puesto -->
             <div>
                 <label for="puesto" class="block text-sm font-medium mb-1.5">Selecciona tu Puesto / Rol:</label>
                 <div class="relative rounded-lg shadow-sm">
@@ -83,7 +65,7 @@
                         <i class="bi bi-briefcase"></i>
                     </div>
                     <select id="puesto" required
-                        class="block w-full ps-10 pr-10 py-2.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm appearance-none cursor-pointer">
+                        class="block w-full ps-10 pr-10 py-2.5 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm appearance-none cursor-pointer">
                         <option value="" disabled selected>Cargando puestos disponibles...</option>
                     </select>
                     <div class="absolute inset-y-0 end-0 flex items-center pe-3 pointer-events-none text-slate-400">
@@ -92,20 +74,19 @@
                 </div>
             </div>
 
-            <!-- Botones de Estado (Ingreso / Salida) -->
             <div>
                 <label class="block text-sm font-medium mb-2">Tipo de Registro:</label>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <input type="radio" name="tipo_registro" id="inicio" value="Ingreso" class="sr-only peer" required>
-                        <label for="inicio" class="flex flex-col items-center justify-center p-3 border-2 border-emerald-600/50 text-emerald-600 rounded-xl cursor-pointer font-semibold uppercase text-sm tracking-wider transition-all peer-checked:bg-emerald-600 peer-checked:text-white peer-checked:border-emerald-600 peer-checked:shadow-lg peer-checked:shadow-emerald-600/20 hover:bg-emerald-50 dark:hover:bg-emerald-950/20">
+                        <label for="inicio" class="flex flex-col items-center justify-center p-3 border-2 border-emerald-600/50 text-emerald-600 rounded-xl cursor-pointer font-semibold uppercase text-sm tracking-wider transition-all peer-checked:bg-emerald-600 peer-checked:text-white peer-checked:border-emerald-600 peer-checked:shadow-lg peer-checked:shadow-emerald-600/20 hover:bg-emerald-50">
                             <i class="bi bi-box-arrow-in-right text-2xl mb-1"></i>
                             Ingreso
                         </label>
                     </div>
                     <div>
                         <input type="radio" name="tipo_registro" id="termino" value="Salida" class="sr-only peer" required>
-                        <label for="termino" class="flex flex-col items-center justify-center p-3 border-2 border-red-600/50 text-red-500 rounded-xl cursor-pointer font-semibold uppercase text-sm tracking-wider transition-all peer-checked:bg-red-600 peer-checked:text-white peer-checked:border-red-600 peer-checked:shadow-lg peer-checked:shadow-red-600/20 hover:bg-red-50 dark:hover:bg-red-950/20">
+                        <label for="termino" class="flex flex-col items-center justify-center p-3 border-2 border-red-600/50 text-red-500 rounded-xl cursor-pointer font-semibold uppercase text-sm tracking-wider transition-all peer-checked:bg-red-600 peer-checked:text-white peer-checked:border-red-600 peer-checked:shadow-lg peer-checked:shadow-red-600/20 hover:bg-red-50">
                             <i class="bi bi-box-arrow-left text-2xl mb-1"></i>
                             Salida
                         </label>
@@ -114,17 +95,15 @@
                 <div id="radioError" class="text-xs text-red-500 mt-2 hidden">Debes seleccionar Ingreso o Salida.</div>
             </div>
 
-            <!-- Comentarios -->
             <div>
                 <label for="tarea" class="block text-sm font-medium mb-1.5">Comentarios / Observaciones (Opcional):</label>
                 <textarea id="tarea" rows="2" placeholder="Ej: Unidad limpia, incidencias en almacén..." 
-                    class="block w-full px-3 py-2 bg-slate-50 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"></textarea>
+                    class="block w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"></textarea>
             </div>
 
             <input type="hidden" id="latitud" value="0">
             <input type="hidden" id="longitud" value="0">
 
-            <!-- Botón Amarillo de Envío -->
             <button type="submit" id="submitBtn" disabled 
                 class="w-full bg-yellow-400 hover:bg-amber-500 text-slate-900 font-semibold py-3 px-4 rounded-lg text-base transition-all disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-yellow-400 shadow-md shadow-yellow-500/10">
                 Enviar Registro
@@ -162,7 +141,7 @@
         }
         window.addEventListener('DOMContentLoaded', cargarPuestos);
 
-        // --- BUSQUEDA DE DNI EN TIEMPO REAL (OPTIMIZADA) ---
+        // --- BUSQUEDA DE DNI EN TIEMPO REAL ---
         document.getElementById('dni').addEventListener('input', function(e) {
             const dni = e.target.value;
             const loader = document.getElementById('dniLoading');
@@ -185,7 +164,6 @@
                             inputSucursal.value = data.sucursal;
                             btnSubmit.disabled = false;
                         } else {
-                            // OPTIMIZACIÓN: Limpieza estricta de campos si falla la búsqueda consecutiva
                             inputNombre.value = "";
                             inputSucursal.value = "";
                             btnSubmit.disabled = true;
@@ -218,21 +196,7 @@
         }
         window.addEventListener('load', capturarCoordenadas);
 
-        // --- CONMUTADOR DE MODO OSCURO ---
-        const toggler = document.getElementById('themeToggler');
-        const themeIcon = document.getElementById('themeIcon');
-        
-        toggler.addEventListener('click', () => {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                themeIcon.className = "bi bi-moon-fill text-slate-600";
-            } else {
-                document.documentElement.classList.add('dark');
-                themeIcon.className = "bi bi-sun-fill text-yellow-500";
-            }
-        });
-
-        // --- PROCESAMIENTO DEL ENVÍO (OPTIMIZADO) ---
+        // --- PROCESAMIENTO DEL ENVÍO ---
         document.getElementById('attendanceForm').addEventListener('submit', function (event) {
             event.preventDefault();
 
@@ -277,21 +241,19 @@
                 body: JSON.stringify(formData)
             })
             .then(() => {
-                msgDiv.className = "mt-4 p-3 rounded-lg text-center text-sm font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400";
+                msgDiv.className = "mt-4 p-3 rounded-lg text-center text-sm font-medium bg-emerald-100 text-emerald-800";
                 msgDiv.innerHTML = `<i class="bi bi-check-circle-fill me-2"></i> ¡${formData.tipo_registro} registrado con éxito!`;
                 msgDiv.classList.remove('hidden');
                 
-                // OPTIMIZACIÓN: Reset completo restableciendo el bloqueo del botón amarillo
                 form.reset();
                 btn.disabled = true; 
                 btn.innerText = "Enviar Registro";
                 
-                // Recargar coordenadas y volver a poner el selector de puestos en su estado inicial
                 capturarCoordenadas();
                 document.getElementById('puesto').selectedIndex = 0;
             })
             .catch(error => {
-                msgDiv.className = "mt-4 p-3 rounded-lg text-center text-sm font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400";
+                msgDiv.className = "mt-4 p-3 rounded-lg text-center text-sm font-medium bg-red-100 text-red-800";
                 msgDiv.innerText = "Error de conexión. Intente de nuevo.";
                 msgDiv.classList.remove('hidden');
                 btn.disabled = false;
